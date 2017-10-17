@@ -27,6 +27,23 @@ namespace LinqToObjects
                 Console.WriteLine(item);
             }
 
+            int[] random = { 1, 6, 4, 8, 3, 8, 0, 3, 6, 4 };
+
+            int[] selectedItem = (from ran in random where ran > 3 && ran < 10 orderby ran select ran).ToArray();
+
+            Console.WriteLine("*********ARRAY");
+            foreach (var item in selectedItem)
+            {
+                Console.WriteLine(item);
+            }
+
+            List<int> listItems = (from ran in random where ran > 5 orderby ran select ran).ToList();
+
+            Console.WriteLine("********LIST");
+            foreach (var item in listItems)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
