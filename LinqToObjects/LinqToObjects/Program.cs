@@ -39,7 +39,8 @@ namespace LinqToObjects
                 Console.WriteLine(item);
             }
 
-            List<int> listItems = (from ran in random where ran > 5 orderby ran select ran).ToList();
+            List<int> listItems = (random.Where(ran => ran > 5).OrderBy(ran => ran).Select(ran => ran)).ToList();
+            //List<int> listItems = (from ran in random where ran > 5 orderby ran select ran).ToList();
 
             Console.WriteLine("********LIST");
             foreach (var item in listItems)
