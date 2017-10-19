@@ -18,8 +18,9 @@ namespace LinqToObjects
 
             LinqToArray.favouriteCars[0] = "Volvo";
 
-            IEnumerable<string> newSomeCar = from item in LinqToArray.favouriteCars where item.Contains(".") 
-                                                                         where item.Contains("") orderby item select item;
+            IEnumerable<string> newSomeCar = LinqToArray.favouriteCars.Where(item => item.Contains(".") && item.Contains("")).OrderBy(item => item).Select(item => item);
+                                                                                        //from item in LinqToArray.favouriteCars where item.Contains(".") 
+                                                                                                                               //where item.Contains("") orderby item select item;
 
             Console.WriteLine("\n*******Array after change\n");
             foreach (var item in newSomeCar)
