@@ -8,7 +8,7 @@ namespace LinqToObjects
     {
         public static void Main(string[] args)
         {
-            IEnumerable<string> someCars = from item in LinqToArray.favouriteCars where item.Contains("7") orderby item select item;
+            IEnumerable<string> someCars = LinqToArray.favouriteCars.Where(n => n.Contains("7")).OrderBy(n => n).Select(n => n);
 
             Console.WriteLine("*******first array\n");
             foreach (var item in someCars)
