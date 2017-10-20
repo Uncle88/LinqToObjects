@@ -8,17 +8,18 @@ namespace LinqToObjects
     {
         public static void Main(string[] args)
         {
-            IEnumerable<string> someCars = LinqToArray.favouriteCars.Where(n => n.Contains("7")).OrderBy(n => n).Select(n => n);
+            //IEnumerable<string> someCars = LinqToArray.favouriteCars.Where(n => n.Contains("7")).OrderBy(n => n);//.Select(n => n);
 
-            Console.WriteLine("*******first array\n");
-            foreach (var item in someCars)
-            {
-                Console.WriteLine(item);
-            }
+            //Console.WriteLine("*******first array\n");
+            //foreach (var item in someCars)
+            //{
+            //    Console.WriteLine(item);
+            //}
 
             LinqToArray.favouriteCars[0] = "Volvo";
 
-            IEnumerable<string> newSomeCar = LinqToArray.favouriteCars.Where(item => item.Contains(".") && item.Contains("")).OrderBy(item => item).Select(item => item);
+            IEnumerable<string> newSomeCar = LinqToArray.favouriteCars.Where(item => item.Contains(".") && item.Contains("")).
+                                                        Where(item => item.Contains(".") && item.Contains("")).OrderBy(item => item).Select(item => item);
                                                                                         //from item in LinqToArray.favouriteCars where item.Contains(".") 
                                                                                                                                //where item.Contains("") orderby item select item;
 
@@ -47,6 +48,8 @@ namespace LinqToObjects
             {
                 Console.WriteLine(item);
             }
+
+            var selectedPeople = LinqToArray.people.Where(p => p.Age > 10 && p.Age < 40).Select(p => new { p.Name, p.Age });
         }
     }
 }
