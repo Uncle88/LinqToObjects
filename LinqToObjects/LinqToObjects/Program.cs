@@ -72,7 +72,8 @@ namespace LinqToObjects
 
             Console.WriteLine("\n Concat");
 
-            var selectedConcat = random.Concat(arrInt);
+            //var selectedConcat = random.Concat(arrInt);
+            IEnumerable<int> selectedConcat = new[] {random.Where(a => a > 50), arrInt.Skip(5)}.SelectMany(ran => ran);
             foreach (var item in selectedConcat)
             {
                 Console.WriteLine(item);
