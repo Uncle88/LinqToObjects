@@ -29,7 +29,7 @@ namespace LinqToObjects
                 Console.WriteLine(item);
             }
 
-            int[] random = { 1, 6, 4, 8, 3, 8, 0, 3, 6, 4 };
+            int[] random = { 1, 26, 94, 88, 43, 28, 10, 31, 65, 40 };
 
             int[] selectedItem = (random.Where(ran => (ran > 3 && ran < 10)).OrderBy(ran => ran).Select(ran => ran)).ToArray();
             //int[] selectedItem = (from ran in random where ran > 3 && ran < 10 orderby ran select ran).ToArray();
@@ -50,6 +50,15 @@ namespace LinqToObjects
             }
 
             var selectedPeople = LinqToArray.people.Where(p => p.Age > 10 && p.Age < 40).Select(p => new { p.Name, p.Age });
+            Console.WriteLine("=========================Take-TakeWhile;Skip-SkipWhile===========================");
+
+            var selectedTakeItem = random.Where(ran => ran > 0).Take(5).OrderBy(ran => ran).Select(ran => ran);
+            foreach (var item in selectedTakeItem)
+            {
+                Console.WriteLine(item);
+            }
+
+            //var selectedTakeWhileItem = random.Where(ran => ran>3)
         }
     }
 }
