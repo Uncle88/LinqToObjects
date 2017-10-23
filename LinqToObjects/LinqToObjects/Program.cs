@@ -64,7 +64,40 @@ namespace LinqToObjects
             {
                 Console.WriteLine(item);
             }
+            Console.WriteLine("\n Skip");
 
+            // var selectedSkipItems = random.SkipWhile((i,q) => i>1 && q.);                                                         DO NOT WORK!!!!!!!!!!!!!!!!
+
+            int[] arrInt = { 5, 34, 67, 3, 87, 90, 102 };
+
+            Console.WriteLine("\n Concat");
+
+            //var selectedConcat = random.Concat(arrInt);
+            IEnumerable<int> selectedConcat = new[] {random.Where(a => a > 50), arrInt.Skip(5)}.SelectMany(ran => ran);
+            foreach (var item in selectedConcat)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine("\n OrderByDescending");
+            var selectOrderBy = arrInt.Where(h => h > 20).Take(6).OrderByDescending(h => h);
+            foreach (var item in selectOrderBy)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("\n Then");
+
+            IEnumerable<string> newSoCar = LinqToArray.favouriteCars.OrderBy(s => s).ThenBy(s => s);             // N1
+            foreach (var item in newSoCar)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("\n");
+            IEnumerable<string> newSoCar2 = LinqToArray.favouriteCars.OrderBy(s => s).ThenByDescending(s => s);  // N2       what's the difference beetwen N1 & N2 ????
+            foreach (var item in newSoCar2)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
