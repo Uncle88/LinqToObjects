@@ -87,8 +87,14 @@ namespace LinqToObjects
             }
             Console.WriteLine("\n Then");
 
-            IEnumerable<string> newSoCar = LinqToArray.favouriteCars.OrderBy(s => s).ThenBy(s => s);
+            IEnumerable<string> newSoCar = LinqToArray.favouriteCars.OrderBy(s => s).ThenBy(s => s);             // N1
             foreach (var item in newSoCar)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("\n");
+            IEnumerable<string> newSoCar2 = LinqToArray.favouriteCars.OrderBy(s => s).ThenByDescending(s => s);  // N2       what's the difference beetwen N1 & N2 ????
+            foreach (var item in newSoCar2)
             {
                 Console.WriteLine(item);
             }
