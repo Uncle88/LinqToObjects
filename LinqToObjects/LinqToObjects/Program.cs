@@ -78,6 +78,14 @@ namespace LinqToObjects
             {
                 Console.WriteLine(item);
             }
+
+            Console.WriteLine("\n OrderByDescending");
+            var selectOrderBy = arrInt.Where(h => h > 20).Take(6).OrderByDescending(h => h);
+            foreach (var item in selectOrderBy)
+            {
+                Console.WriteLine(item);
+            }
+
         }
     }
 }
