@@ -85,7 +85,13 @@ namespace LinqToObjects
             {
                 Console.WriteLine(item);
             }
+            Console.WriteLine("\n Then");
 
+            IEnumerable<string> newSoCar = LinqToArray.favouriteCars.OrderBy(s => s).ThenBy(s => s);
+            foreach (var item in newSoCar)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
