@@ -58,7 +58,13 @@ namespace LinqToObjects
                 Console.WriteLine(item);
             }
 
-            //var selectedTakeWhileItem = random.Where(ran => ran>3)
+            Console.WriteLine("\n");
+            var selectedSkipItem = random.Skip(5).Select(ran => ran);
+            foreach (var item in selectedSkipItem)
+            {
+                Console.WriteLine(item);
+            }
+
         }
     }
 }
