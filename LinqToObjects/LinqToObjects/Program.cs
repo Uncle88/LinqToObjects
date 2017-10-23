@@ -64,7 +64,19 @@ namespace LinqToObjects
             {
                 Console.WriteLine(item);
             }
+            Console.WriteLine("\n Skip");
 
+            // var selectedSkipItems = random.SkipWhile((i,q) => i>1 && q.);                                                         DO NOT WORK!!!!!!!!!!!!!!!!
+
+            int[] arrInt = { 5, 34, 67, 3, 87, 90, 102 };
+
+            Console.WriteLine("\n Concat");
+
+            var selectedConcat = random.Concat(arrInt);
+            foreach (var item in selectedConcat)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
