@@ -35,6 +35,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LinqToArray.cs" />
+    <Compile Include="Automobile.cs" />
+    <Compile Include="AutoOptionEntry.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

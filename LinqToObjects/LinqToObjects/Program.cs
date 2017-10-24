@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
+
 namespace LinqToObjects
 {
     class MainClass
@@ -64,13 +65,13 @@ namespace LinqToObjects
             {
                 Console.WriteLine(item);
             }
-            Console.WriteLine("\n Skip");
+            Console.WriteLine("\n ========================= Skip");
 
             // var selectedSkipItems = random.SkipWhile((i,q) => i>1 && q.);                                                         DO NOT WORK!!!!!!!!!!!!!!!!
 
             int[] arrInt = { 5, 34, 67, 3, 87, 90, 102 };
 
-            Console.WriteLine("\n Concat");
+            Console.WriteLine("\n ========================= Concat");
 
             //var selectedConcat = random.Concat(arrInt);
             IEnumerable<int> selectedConcat = new[] {random.Where(a => a > 50), arrInt.Skip(5)}.SelectMany(ran => ran);
@@ -79,13 +80,13 @@ namespace LinqToObjects
                 Console.WriteLine(item);
             }
 
-            Console.WriteLine("\n OrderByDescending");
+            Console.WriteLine("\n ========================= OrderByDescending");
             var selectOrderBy = arrInt.Where(h => h > 20).Take(6).OrderByDescending(h => h);
             foreach (var item in selectOrderBy)
             {
                 Console.WriteLine(item);
             }
-            Console.WriteLine("\n Then");
+            Console.WriteLine("\n ========================= Then");
 
             IEnumerable<string> newSoCar = LinqToArray.favouriteCars.OrderBy(s => s).ThenBy(s => s);             // N1
             foreach (var item in newSoCar)
@@ -95,6 +96,26 @@ namespace LinqToObjects
             Console.WriteLine("\n");
             IEnumerable<string> newSoCar2 = LinqToArray.favouriteCars.OrderBy(s => s).ThenByDescending(s => s);  // N2       what's the difference beetwen N1 & N2 ????
             foreach (var item in newSoCar2)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine("\n========================= Join/GroupJoin");
+
+            var automob = Automobile.GetAutoArrayList();
+            AutoOptionEntry[] autoOpt = AutoOptionEntry.AutoOptionEntries();
+
+            var automobileOpt = automob.Join(                                       //ArrayList do not contain Join
+                 autoOpt,
+                 s => s.id,
+                 d => d.id,
+                 (s, d) => new
+                 {
+                     id = s.id,
+                     mod = string.Format("{0}{1}", s.model, s.countryMake),
+                     options = d.optionsCount
+                 });
+            foreach (var item in automobileOpt)
             {
                 Console.WriteLine(item);
             }
