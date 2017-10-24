@@ -197,6 +197,25 @@ namespace LinqToObjects
             {
                 Console.WriteLine(ex.Message);
             }
+
+            Console.WriteLine("\n========================= Range, Repeat и Empty");
+            IEnumerable<int> strs = Enumerable.Range(1, 10);
+            foreach (var item in strs)
+                Console.WriteLine(item);
+            
+            Console.WriteLine("---");
+
+            IEnumerable<int> repets = Enumerable.Repeat(1,3);
+            foreach (var item in repets)
+                Console.WriteLine(item);
+
+            Console.WriteLine("---");
+
+            IEnumerable<string> str = Enumerable.Empty<string>();
+
+            foreach (string s in str)
+                Console.Write(s);
+            Console.WriteLine(str.Count());
         }
     }
 }
