@@ -30,7 +30,7 @@ namespace LinqToObjects
                 Console.WriteLine(item);
             }
 
-            int[] random = { 1, 26, 94, 88, 43, 28, 10, 31, 65, 40 };
+            int[] random = { 10, 26, 94, 88, 43, 26, 10, 31, 65, 43 };
 
             int[] selectedItem = (random.Where(ran => (ran > 3 && ran < 10)).OrderBy(ran => ran).Select(ran => ran)).ToArray();
             //int[] selectedItem = (from ran in random where ran > 3 && ran < 10 orderby ran select ran).ToArray();
@@ -105,20 +105,57 @@ namespace LinqToObjects
             var automob = Automobile.GetAutoArrayList();
             AutoOptionEntry[] autoOpt = AutoOptionEntry.AutoOptionEntries();
 
-            var automobileOpt = automob.Join(                                       //ArrayList do not contain Join
-                 autoOpt,
-                 s => s.id,
-                 d => d.id,
-                 (s, d) => new
-                 {
-                     id = s.id,
-                     mod = string.Format("{0}{1}", s.model, s.countryMake),
-                     options = d.optionsCount
-                 });
-            foreach (var item in automobileOpt)
+            //var automobileOpt = automob.Join(                                       //ArrayList do not contain Join
+            //     autoOpt,
+            //     s => s.id,
+            //     d => d.id,
+            //     (s, d) => new
+            //     {
+            //         id = s.id,
+            //         mod = string.Format("{0}{1}", s.model, s.countryMake),
+            //         options = d.optionsCount
+            //     });
+            //foreach (var item in automobileOpt)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            Console.WriteLine("\n========================= Distinct, Union, Except и Intersect");
+            foreach (var item in random)
+                Console.Write("\t" + item);
+            var selectDistinct = random.Distinct();
+            Console.WriteLine();
+            foreach (var item in selectDistinct)
+                Console.Write("\t" + item);
+
+            Console.WriteLine("\n");
+            var first = random.Take(5);
+            var second = random.Skip(4);
+
+            var concat = first.Concat(second);
+            var union = first.Union(second);
+
+            Console.WriteLine(@"array Random:{0} 
+            first - {1}
+            second - {2}
+            concat - {3}
+            union - {4}", random.Count(), first.Count(), second.Count(), concat.Count(),union.Count());
+            Console.WriteLine("\n");
+
+            var selectIntersect = first.Intersect(second);
+            foreach (var item in first)
+                Console.Write("\t" + item);
+            Console.WriteLine();
+            foreach (var item in second)
+                Console.Write("\t" + item);
+            Console.WriteLine();
+            foreach (var item in selectIntersect)
             {
                 Console.WriteLine(item);
             }
+            Console.WriteLine();
+            var selectExcept = first.Except(second);
+            foreach (var item in selectExcept)
+            Console.WriteLine(item);
         }
     }
 }
