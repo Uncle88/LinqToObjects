@@ -184,6 +184,19 @@ namespace LinqToObjects
             foreach (var item in items2)
                 Console.WriteLine("{0} {1} {2}",item.id,item.model, item.countryMake);
 
+            Console.WriteLine("\n========================= DefaultIfEmpty");
+
+            try
+            {
+                string subary = LinqToArray.favouriteCars.Where(n => n.Equals("subary")).DefaultIfEmpty().First();
+                if (subary != null)
+                    Console.WriteLine("car found");
+                Console.WriteLine("car not found");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
