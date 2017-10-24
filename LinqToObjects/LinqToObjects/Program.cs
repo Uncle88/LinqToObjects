@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,8 +22,8 @@ namespace LinqToObjects
 
             IEnumerable<string> newSomeCar = LinqToArray.favouriteCars.Where(item => item.Contains(".") && item.Contains("")).
                                                         Where(item => item.Contains(".") && item.Contains("")).OrderBy(item => item).Select(item => item);
-                                                                                        //from item in LinqToArray.favouriteCars where item.Contains(".") 
-                                                                                                                               //where item.Contains("") orderby item select item;
+            //from item in LinqToArray.favouriteCars where item.Contains(".") 
+            //where item.Contains("") orderby item select item;
 
             Console.WriteLine("\n*******Array after change\n");
             foreach (var item in newSomeCar)
@@ -74,7 +75,7 @@ namespace LinqToObjects
             Console.WriteLine("\n ========================= Concat");
 
             //var selectedConcat = random.Concat(arrInt);
-            IEnumerable<int> selectedConcat = new[] {random.Where(a => a > 50), arrInt.Skip(5)}.SelectMany(ran => ran);
+            IEnumerable<int> selectedConcat = new[] { random.Where(a => a > 50), arrInt.Skip(5) }.SelectMany(ran => ran);
             foreach (var item in selectedConcat)
             {
                 Console.WriteLine(item);
@@ -138,7 +139,7 @@ namespace LinqToObjects
             first - {1}
             second - {2}
             concat - {3}
-            union - {4}", random.Count(), first.Count(), second.Count(), concat.Count(),union.Count());
+            union - {4}", random.Count(), first.Count(), second.Count(), concat.Count(), union.Count());
             Console.WriteLine("\n");
 
             var selectIntersect = first.Intersect(second);
@@ -155,7 +156,34 @@ namespace LinqToObjects
             Console.WriteLine();
             var selectExcept = first.Except(second);
             foreach (var item in selectExcept)
-            Console.WriteLine(item);
+                Console.WriteLine(item);
+
+            Console.WriteLine("\n========================= Cast/ ofType");
+            ArrayList list = new ArrayList();
+            list.Add(new Automobile { id = 1, model = "vaz2108", countryMake = "Russia" });
+            list.Add(new Automobile { id = 2, model = "Subaru", countryMake = "Japan" });
+            list.Add(new AutoOptionEntry { id = 1, optionsCount = 100 });
+            list.Add(new Automobile { id = 3, model = "BMW", countryMake = "Germany" });
+
+            var items = list.Cast<Automobile>();
+            Console.WriteLine("use Cast");
+            try
+            {
+                foreach (var item in items)
+                {
+                    Console.WriteLine("{0}{1}{2}", item.id, item.model, item.countryMake);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("{0}{1}", ex.Message, System.Environment.NewLine);
+            }
+            Console.WriteLine("use OfType");
+
+            var items2 = list.OfType<Automobile>();
+            foreach (var item in items2)
+                Console.WriteLine("{0} {1} {2}",item.id,item.model, item.countryMake);
+
         }
     }
 }
