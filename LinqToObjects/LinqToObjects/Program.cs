@@ -68,9 +68,9 @@ namespace LinqToObjects
             }
             Console.WriteLine("\n ========================= Skip");
 
-            // var selectedSkipItems = random.SkipWhile((i,q) => i>1 && q.);                                                         DO NOT WORK!!!!!!!!!!!!!!!!
+            var selectedSkipItems = random.SkipWhile(i => i < 5);                                                         //DO NOT WORK!!!!!!!!!!!!!!!!
 
-            int[] arrInt = { 5, 34, 67, 3, 87, 90, 102 };
+            int[] arrInt = new []{ 5, 34, 67, 3, 87, 90, 102 };
 
             Console.WriteLine("\n ========================= Concat");
 
@@ -103,23 +103,7 @@ namespace LinqToObjects
 
             Console.WriteLine("\n========================= Join/GroupJoin");
 
-            var automob = Automobile.GetAutoArrayList();
-            AutoOptionEntry[] autoOpt = AutoOptionEntry.AutoOptionEntries();
-
-            //var automobileOpt = automob.Join(                                       //ArrayList do not contain Join
-            //     autoOpt,
-            //     s => s.id,
-            //     d => d.id,
-            //     (s, d) => new
-            //     {
-            //         id = s.id,
-            //         mod = string.Format("{0}{1}", s.model, s.countryMake),
-            //         options = d.optionsCount
-            //     });
-            //foreach (var item in automobileOpt)
-            //{
-            //    Console.WriteLine(item);
-            //}
+           
             Console.WriteLine("\n========================= Distinct, Union, Except и Intersect");
             foreach (var item in random)
                 Console.Write("\t" + item);
@@ -159,11 +143,11 @@ namespace LinqToObjects
                 Console.WriteLine(item);
 
             Console.WriteLine("\n========================= Cast/ ofType");
-            ArrayList list = new ArrayList();
-            list.Add(new Automobile { id = 1, model = "vaz2108", countryMake = "Russia" });
-            list.Add(new Automobile { id = 2, model = "Subaru", countryMake = "Japan" });
-            list.Add(new AutoOptionEntry { id = 1, optionsCount = 100 });
-            list.Add(new Automobile { id = 3, model = "BMW", countryMake = "Germany" });
+            ArrayList listt = new ArrayList();
+            listt.Add(new Automobile { id = 1, model = "vaz2108", countryMake = "Russia" });
+            listt.Add(new Automobile { id = 2, model = "Subaru", countryMake = "Japan" });
+            listt.Add(new AutoOptionEntry { id = 1, optionsCount = 100 });
+            listt.Add(new Automobile { id = 3, model = "BMW", countryMake = "Germany" });
 
             var items = list.Cast<Automobile>();
             Console.WriteLine("use Cast");
